@@ -29,5 +29,5 @@ function mapStateToProps(state){
 
 
 
-
+//this is the glue that connects react and redux
 export default connect(mapStateToProps)(BookDetail);
