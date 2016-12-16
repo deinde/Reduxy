@@ -1,35 +1,31 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreator} from 'redux';
 
 
 
-
-
- class BookDetail extends Component{
+class BookDetail extends Component{
 	render(){
-		if(!this.props.book){
-			return <div>Please Chose A Book Dude!</div>
+		if (!this.props.book){
+			return <div>Please Choose A Book Dude!</div>
 		}
 		return(
 			<div>
-         <h1>Details of Book</h1>
-         <div>{this.props.book.title}</div>
+         <h3>Details of Book</h3>
+         <div>Title: {this.props.book.title}</div>
+         <div>Pages: {this.props.book.pages}</div>
      </div>
 		);
 	}
 }
 
-
+//global props (state) is coming from here after re-render!!!!
+//then made available inside this container as book so
+//state = this.props.book =  {title:Harry Potter, pages:100} 
 function mapStateToProps(state){
- return{
- 	book:state.activeBook
+ return{  
+ 	book: state.activeBook
  }
 }
-
-// function mapDispatchToProps(){
-//  return bindActionCreator()
-// }
 
 
 

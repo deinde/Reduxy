@@ -4,7 +4,7 @@ import React,{Component} from 'react';
 //and get the connect method
 import {connect} from 'react-redux';
 //This imports the action creator to handle my click event and call 
-//selectBook function in actions folder
+//selectBook function in actions folder .it will return an action
 import {selectBook} from '../actions/index';
 //This will allow actions to pass through ALL reducers till matched
 //with switch case
@@ -17,6 +17,7 @@ export class BookList extends Component{
  renderList(){
  	 return this.props.books.map((book)=>{
  	 	return(
+ 	 		//each individual book
  	 	  <li 
  	 	  	key={book.title} 
  	 	  	onClick={()=>this.props.selectBook(book)}
@@ -56,14 +57,16 @@ function mapStateToProps(state){
  };
 }
 // // making a 'action creator' 'selectBook' available to be called
-//clicked
-//and return a value that can be use inside this container!!
-// // mapDispatchToProps is saying whenever selecBook is called the result
-// //should be passed to all of our reducers app wide!!!!! flow through
-// //dispach function ,dispatch function recieves and spits it to ALL
-// //Reducers ALL of then not one ALL. Switch case is used to funnel correct
-// //action!! this will return a new value inside this container that will
-// //be available for use
+//clicked inside this container
+//The call back is dispach
+// // bindActionCreators dispatch call back function 
+//is saying whenever selecBook is called the action
+// //should be dispatched and passed to all of our reducers app wide!!!!! 
+//flow through all reducers that will take state + action as arguments  
+// //dispatch function recieves and spits it to ALL
+// //Reducers ALL of them not one ALL! Switch case is used to funnel correct
+// //action!! this will return a new value(state) inside this container that will
+// //be available for use and become the new state when compenent re-renders.
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({selectBook:selectBook},dispatch);
 }
